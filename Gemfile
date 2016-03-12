@@ -15,6 +15,13 @@ gem 'simple_form'
 gem 'paperclip'
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
+  gem 'awesome_print'
   gem 'byebug'
 end
 
