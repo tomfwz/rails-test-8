@@ -13,6 +13,7 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'slim-rails'
 gem 'simple_form'
 gem 'paperclip'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'rspec-rails'
