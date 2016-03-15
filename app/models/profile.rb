@@ -1,5 +1,6 @@
 class Profile < ActiveRecord::Base
   extend Enumerize
+  
   has_many :comments, :as => :commentable, dependent: :destroy
   belongs_to :user
 
