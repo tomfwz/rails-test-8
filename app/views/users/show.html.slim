@@ -1,0 +1,12 @@
+#users-show-container
+  .container
+    .row
+      .col-md-12
+        = image_tag @user.avatar.url(:thumb)
+        h1 = @user.name
+
+        - if @user.profile.present?
+          = render @user.profile
+          = render @user.profile.comments
+        - else
+          p This user dont have a profile.
