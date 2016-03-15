@@ -8,5 +8,6 @@ describe User do
 
   context 'associations' do
     it { is_expected.to have_many :comments }
+    it { is_expected.to have_one :profile }
   end
 end
