@@ -7,7 +7,7 @@
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand href="#" Comment App
+        a.navbar-brand href="#{root_url}" Comment App
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         ul.nav.navbar-nav
           li
@@ -15,7 +15,7 @@
         ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             li
-              a href="javascript:void(0)" #{current_user.first_name}
+              = link_to "#{current_user.name}", edit_user_registration_path
             li.nav-link
               = link_to 'Logout', destroy_user_session_path, method: :delete
           - else
