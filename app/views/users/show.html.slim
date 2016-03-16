@@ -2,11 +2,19 @@
   .container
     .row
       .col-md-12
-        = image_tag @user.avatar.url(:medium)
-        h1 = @user.name
-
-        - if @user.profile.present?
-          = render @user.profile
-          = render @user.profile.comments
+        - if @user.profile.nil?
+          = image_tag @user.avatar.url(:medium)
+          h1 = @user.name
+        
         - else
-          p This user dont have a profile.
+          .row
+            .col-md-4
+              = render @user.profile
+
+            .col-md-8
+              h2 Comments
+
+              - if @user.profile.comments.any?
+                = render @user.profile.comments
+              - else
+                p This profile dont have any comments
