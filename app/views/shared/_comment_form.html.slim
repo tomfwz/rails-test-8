@@ -1,0 +1,4 @@
+.shared-comment-form-container
+  = simple_form_for Comment.new, defaults: { label: false } do |form|
+    = form.input :message
+    = form.submit 'Submit', class: 'btn btn-primary'
