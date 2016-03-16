@@ -2,7 +2,7 @@
   .container
     .row
       .col-md-12
-        = image_tag @user.avatar.url(:thumb)
+        = image_tag @user.avatar.url(:medium)
         h1 = @user.name
 
         - if @user.profile.present?
