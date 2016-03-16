@@ -1,20 +1,15 @@
 #users-show-container
   .container
     .row
-      .col-md-12
-        - if @user.profile.nil?
+      - if @user.profile.nil?
+        aside.col-md-4
           = image_tag @user.avatar.url(:medium)
           h1 = @user.name
-        
-        - else
-          .row
-            .col-md-4
-              = render @user.profile
+      
+      - else
+        aside.profile.col-md-4
+          = render @user.profile
 
-            .col-md-8
-              h2 Comments
+        section.comments.col-md-8
+          h2 Comments
 
-              - if @user.profile.comments.any?
-                = render @user.profile.comments
-              - else
-                p This profile dont have any comments

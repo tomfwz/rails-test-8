@@ -1,14 +1,10 @@
 .profiles-profile-container
-  .container
-    .row
-      .col-md-12
-        .col-md-4
-          = image_tag profile.user.avatar.url(:medium)
-          h1 = profile.display_name
-          ul
-            li = profile.designation
-            li = profile.dob
-            li = profile.address
-            li = profile.city
-            li = profile.gender
-            li = profile.mobile_number
+  = image_tag profile.user.avatar.url(:medium)
+  h1 = profile.display_name
+  ul
+    li = profile.designation
+    li = profile.dob
+    li = profile.address
+    li = profile.city
+    li = profile.gender
+    li = profile.mobile_number
