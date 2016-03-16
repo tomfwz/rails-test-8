@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'paperclip'
 gem 'bootstrap-sass'
 gem 'enumerize'
+gem 'draper'
 
 group :development, :test do
   gem 'rspec-rails'
