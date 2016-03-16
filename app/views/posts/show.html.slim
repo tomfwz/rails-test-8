@@ -1,0 +1,15 @@
+#posts-show-container
+  .container
+    .row
+      .col-md-12
+        article
+          h1 = @post.title
+          p = @post.content
+        
+        section.comments
+          h2 Comments
+          
+          - if @post.comments.any?
+            = render @post.comments
+          - else
+            p This post dont have any comments
