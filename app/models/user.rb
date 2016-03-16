@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
     styles: { medium: "300x300>", thumb: "100x100>" },
     default_url: "/assets/users/avatars/:style/missing.png"
   validates_attachment :avatar,
+    presence: true,
     content_type: { content_type: /\Aimage\/.*\Z/ },
     size: { less_than: 5.megabyte }
 end
