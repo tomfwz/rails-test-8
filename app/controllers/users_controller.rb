@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
   
   def show
-    @user.profile = @user.profile.decorate
+    @user.profile = @user.profile.decorate if @user.profile.present?
   end
 
   private
