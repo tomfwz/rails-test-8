@@ -13,3 +13,8 @@
         section.comments.col-md-8
           h2 Comments
 
+          - if @user.profile.comments.any?
+            = render @user.profile.comments
+            = render 'shared/comment_form'  
+          - else
+            p This profile dont have any comments

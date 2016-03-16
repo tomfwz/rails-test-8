@@ -8,8 +8,9 @@
         
         section.comments
           h2 Comments
-          
+
           - if @post.comments.any?
             = render @post.comments
+            = render 'shared/comment_form'
           - else
             p This post dont have any comments
