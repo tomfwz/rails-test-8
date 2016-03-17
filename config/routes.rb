@@ -8,12 +8,10 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [:show] do
-    resources :comments, only: [:show, :new, :create]
+    resources :comments, only: [:show, :create]
   end
 
   resources :profiles, only: [:show] do
-    resources :comments, only: [:show, :new, :create]
+    resources :comments, only: [:show, :create]
   end
-
-  resources :comments, only: [:create]
 end
