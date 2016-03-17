@@ -4,14 +4,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :profiles, only: [:show, :new, :create]
-    resources :comments, only: [:index]
   end
 
-  resources :posts, only: [:show] do
-    resources :comments, only: [:show, :create]
-  end
-
-  resources :profiles, only: [:show] do
-    resources :comments, only: [:show, :create]
-  end
+  resources :posts,    only: [:show]
+  resources :profiles, only: [:show]
+  
+  resources :comments, only: [:create]
 end
