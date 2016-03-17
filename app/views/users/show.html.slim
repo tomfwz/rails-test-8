@@ -12,7 +12,7 @@
       section.comments.col-md-8
         h2 Comments
 
-        = simple_form_for Comment.new, url: profile_comments_path(@user.profile), defaults: { label: false }, remote: true do |form|
+        = simple_form_for Comment.new, defaults: { label: false }, remote: true do |form|
           = form.input :commentable_id, as: :hidden, input_html: { value: @user.profile.id }
           = form.input :commentable_type, as: :hidden, input_html: { value: 'Profile' }
           = form.input :message

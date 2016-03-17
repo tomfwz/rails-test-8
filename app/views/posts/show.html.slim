@@ -8,7 +8,7 @@
       section.comments
         h2 Comments
         
-        = simple_form_for Comment.new, url: post_comments_path(@post), defaults: { label: false }, remote: true do |form|
+        = simple_form_for Comment.new, defaults: { label: false }, remote: true do |form|
           = form.input :commentable_id, as: :hidden, input_html: { value: @post.id }
           = form.input :commentable_type, as: :hidden, input_html: { value: 'Post' }
           = form.input :message
