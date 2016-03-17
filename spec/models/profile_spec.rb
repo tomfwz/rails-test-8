@@ -18,7 +18,7 @@ describe Profile do
     let!(:comments) { create_list(:comment, 3, user: james, message: 'Awesome', commentable: profile) }
 
     it 'returns the comments of a profile' do
-      expect(tom_profile.comments).to eq comments
+      expect(profile.comments).to eq comments
     end
   end
 end
