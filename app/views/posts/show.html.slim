@@ -1,21 +1,19 @@
 #posts-show-container
-  .container
-    .row
-      .col-md-12
-        article
-          h1 = @post.title
-          p = @post.content
+  .row
+    .col-md-12
+      article
+        h1 = @post.title
+        p = @post.content
+      
+      section.comments
+        h2 Comments
         
-        section.comments
-          h2 Comments
         = simple_form_for Comment.new, url: post_comments_path(@post), defaults: { label: false }, remote: true do |form|
           = form.input :commentable_id, as: :hidden, input_html: { value: @post.id }
           = form.input :commentable_type, as: :hidden, input_html: { value: 'Post' }
           = form.input :message
           = form.submit 'Submit', class: 'btn btn-primary'
 
-          - if @post.comments.any?
-            = render @post.comments
-            = render 'shared/comment_form'
-          - else
-            p This post dont have any comments
+        - if @comments.any?
+          .comments-listing
+            = render @comments

@@ -1,24 +1,23 @@
 #users-show-container
-  .container
-    .row
-      - if @user.profile.nil?
-        aside.col-md-4
-          = image_tag @user.avatar.url(:medium)
-          h1 = @user.name
-      
-      - else
-        aside.profile.col-md-4
-          = render @user.profile
+  .row
+    - if @user.profile.nil?
+      aside.col-md-4
+        = image_tag @user.avatar.url(:medium)
+        h1 = @user.name
+    
+    - else
+      aside.profile.col-md-4
+        = render @user.profile
 
-        section.comments.col-md-8
-          h2 Comments
+      section.comments.col-md-8
+        h2 Comments
 
-          - if @user.profile.comments.any?
-            = render @user.profile.comments
-            = render 'shared/comment_form'  
-          - else
-            p This profile dont have any comments        = simple_form_for Comment.new, url: profile_comments_path(@user.profile), defaults: { label: false }, remote: true do |form|
+        = simple_form_for Comment.new, url: profile_comments_path(@user.profile), defaults: { label: false }, remote: true do |form|
           = form.input :commentable_id, as: :hidden, input_html: { value: @user.profile.id }
           = form.input :commentable_type, as: :hidden, input_html: { value: 'Profile' }
           = form.input :message
           = form.submit 'Submit', class: 'btn btn-primary'
+
+        - if @comments.any?
+          .comments-listing
+            = render @comments
