@@ -2,7 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
   
   def show
-    @user.profile = @user.profile.decorate if @user.profile.present?
+    if @user.profile.present?
+      @profile = @user.profile.decorate
+      @comments = @user.profile.comments.order(created_at: :desc)
+    end
   end
 
   private
