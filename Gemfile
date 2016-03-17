@@ -16,6 +16,7 @@ gem 'paperclip'
 gem 'bootstrap-sass'
 gem 'enumerize'
 gem 'draper'
+gem 'closure_tree'
 
 group :development, :test do
   gem 'rspec-rails'
