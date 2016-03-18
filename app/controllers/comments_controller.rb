@@ -6,13 +6,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if params[:comment][:parent_id].present?
-      parent = Comment.find(params[:comment][:parent_id])
+    if parent_id.present?
+      parent = Comment.find(parent_id)
       @comment = parent.children.build(comment_params)
-      @comment.update_attributes(user_id: current_user.id)
     else
       @comment = Comment.new(comment_params)
     end
+
+    @comment.update_attributes(user_id: current_user.id)
 
     respond_to do |format|
       if @comment.save
@@ -32,6 +33,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def parent_id
+    params[:comment][:parent_id]
+  end
 
   def comment_params
     params.require(:comment).permit(:message, :commentable_id, :commentable_type)
