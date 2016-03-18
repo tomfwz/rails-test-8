@@ -7,6 +7,6 @@
       .media-body
         h4.media-heading = link_to "#{comment.user.name}", comment.user
         p = comment.message
-        p = link_to 'Reply', reply_comment_path(comment)
+        p = link_to 'Reply', new_comment_path(comment.id)
 
         = render comment.children
