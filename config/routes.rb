@@ -5,10 +5,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :posts, only: [:show]
 
-  resources :comments, only: [:create] do
-    member do
-      get :reply
-      post :create_reply
-    end
-  end
+  resources :comments, only: [:create]
+  get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
 end
