@@ -15,11 +15,7 @@
     section.comments.col-md-8
       h2 Comments
 
-      = simple_form_for Comment.new, defaults: { label: false }, remote: true do |form|
-        = form.input :commentable_id, as: :hidden, input_html: { value: @user.id }
-        = form.input :commentable_type, as: :hidden, input_html: { value: 'User' }
-        = form.input :message
-        = form.submit 'Submit', class: 'btn btn-primary'
+      = render 'comments/form'
 
       - if @comments.any?
         .comments-listing
