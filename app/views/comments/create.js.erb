@@ -1,1 +1,6 @@
-$('.comments-listing').prepend('<%= j render(@comment) %>');
+<% if !params[:comment][:parent_id].present? %>
+  $('.comments-listing').prepend('<%= j render(@comment) %>');
+  $('#comment_message').val('');
+<% else %>
+  $("#reply-<%= params[:comment][:parent_id] =%>").html('<%= j render(@comment) %>');
+<% end %>
