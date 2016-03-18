@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = @user.decorate
     @comments = @user.comments.order(created_at: :desc)
+    @comment = Comment.new(commentable: @user)
   end
 
   private
