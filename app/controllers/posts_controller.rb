@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   
   def show
     @comments = @post.comments.order(created_at: :desc)
+    @comment = Comment.new(commentable: @post)
   end
 
   private
