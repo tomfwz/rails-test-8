@@ -1,23 +1,26 @@
 #users-show-container
   .row
-    - if @user.profile.nil?
-      aside.col-md-4
-        = image_tag @user.avatar.url(:medium)
-        h1 = @user.name
-    
-    - else
-      aside.profile.col-md-4
-        = render @user.profile
+    aside.profile.col-md-4
+      = image_tag @user.avatar.url(:medium)
+      h1 = @user.display_name
 
-      section.comments.col-md-8
-        h2 Comments
+      ul
+        li = @user.designation
+        li = @user.dob
+        li = @user.address
+        li = @user.city
+        li = @user.gender
+        li = @user.mobile_number
 
-        = simple_form_for Comment.new, defaults: { label: false }, remote: true do |form|
-          = form.input :commentable_id, as: :hidden, input_html: { value: @user.profile.id }
-          = form.input :commentable_type, as: :hidden, input_html: { value: 'Profile' }
-          = form.input :message
-          = form.submit 'Submit', class: 'btn btn-primary'
+    section.comments.col-md-8
+      h2 Comments
 
-        - if @comments.any?
-          .comments-listing
-            = render @comments
+      = simple_form_for Comment.new, defaults: { label: false }, remote: true do |form|
+        = form.input :commentable_id, as: :hidden, input_html: { value: @user.id }
+        = form.input :commentable_type, as: :hidden, input_html: { value: 'User' }
+        = form.input :message
+        = form.submit 'Submit', class: 'btn btn-primary'
+
+      - if @comments.any?
+        .comments-listing
+          = render @comments

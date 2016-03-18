@@ -1,4 +1,4 @@
-class ProfileDecorator < ApplicationDecorator
+class UserDecorator < ApplicationDecorator
   delegate_all
 
   def dob
