@@ -1,5 +1,7 @@
 .comments-form-container
   = simple_form_for @comment, defaults: { label: false } do |form|
     = form.input :parent_id, as: :hidden
+    = form.input :commentable_id, as: :hidden
+    = form.input :commentable_type, as: :hidden
     = form.input :message
     = form.submit 'Submit', class: 'btn btn-primary'
