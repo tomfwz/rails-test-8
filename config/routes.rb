@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   resources :posts,    only: [:show]
   resources :profiles, only: [:show]
-  
-  resources :comments, only: [:create]
+
+  resources :comments, only: [:create] do
+    member do
+      get :reply
+      post :create_reply
+    end
+  end
 end
