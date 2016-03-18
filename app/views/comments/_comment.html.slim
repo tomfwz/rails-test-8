@@ -3,6 +3,10 @@
     li.media
       .media-left
         = link_to image_tag(comment.user.avatar.url(:small)), "javascript:void(0)"
+      
       .media-body
         h4.media-heading = link_to "#{comment.user.name}", comment.user
         p = comment.message
+        p = link_to 'Reply', reply_comment_path(comment)
+
+        = render comment.children
