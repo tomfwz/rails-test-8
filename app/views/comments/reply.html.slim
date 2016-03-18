@@ -1,0 +1,4 @@
+#comments-reply-container
+  = simple_form_for @child_comment, url: create_reply_comment_path(@comment), defaults: { label: false } do |form|
+    = form.input :message
+    = form.submit 'Submit', class: 'btn btn-primary'

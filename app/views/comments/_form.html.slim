@@ -1,0 +1,4 @@
+.comments-form-container
+  = simple_form_for Comment.new, defaults: { label: false }, remote: true do |form|
+    = form.input :message
+    = form.submit 'Submit', class: 'btn btn-primary'
