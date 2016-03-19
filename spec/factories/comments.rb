@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment do
     message 'I want to hire you!'
-    user    { user }
+    association :user, factory: :user
   end
 end
