@@ -32,11 +32,11 @@ describe CommentsController do
       post :create, comment: comment
     end
 
-    context 'creates a comment to a user profile' do
-      let!(:user)     { create(:user) }
-      let!(:comment)  { attributes_for(:comment, commentable_id: user.id, commentable_type: 'User', user_id: user.id) }
+    let!(:user) { create(:user) }
+    before      { sign_in user }
 
-      before { sign_in user }
+    context 'creates a comment to a user profile' do
+      let!(:comment)  { attributes_for(:comment, commentable_id: user.id, commentable_type: 'User', user: user) }
 
       it 'saves a comment' do
         expect { do_request }.to change(Comment, :count).by(1)
@@ -48,29 +48,22 @@ describe CommentsController do
     end
 
     context 'creates a comment to a post' do
-      let!(:user)     { create(:user) }
-      let!(:post)     { create(:post, user_id: user.id) }
-      let!(:comment)  { attributes_for(:comment, commentable_id: post.id, commentable_type: 'Post', user_id: user.id) }
-
-      before { sign_in user }
+      let!(:post)     { create(:post, user: user) }
+      let!(:comment)  { attributes_for(:comment, commentable_id: post.id, commentable_type: 'Post', user: user) }
 
       it 'saves a comment' do
         expect { do_request }.to change(Comment, :count).by(1) 
       end
 
       it 'increases number of comments of a post' do
-        expect { do_request }.to change(post.comments.reload, :count).by(1) 
+        expect { do_request }.to change(post.comments, :count).by(1) 
       end
     end
 
     context 'creates a comment as a reply' do
-      let!(:user)         { create(:user) }
-      let!(:post)         { create(:post, user_id: user.id) }
-      let!(:root_comment) { create(:comment, commentable_id: post.id, commentable_type: 'Post', user_id: user.id, parent_id: nil) }
-      let!(:comment)      { attributes_for(:comment, parent_id: root_comment.id, user_id: user.id) }
+      let!(:root_comment) { create(:comment, commentable_id: user.id, commentable_type: 'User', user: user, parent_id: nil) }
+      let!(:comment)      { attributes_for(:comment, parent_id: root_comment.id, user: user) }
       
-      before { sign_in user }
-
       it 'saves a comment' do
         expect { do_request }.to change(Comment, :count).by(1) 
       end
